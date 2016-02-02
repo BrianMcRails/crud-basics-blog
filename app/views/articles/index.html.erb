@@ -1,0 +1,30 @@
+<h1 style="font-family: Tahoma; color: DarkGreen">Listing articles</h1>
+<%= link_to 'New Article', new_article_path %>
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Text</th>
+        <th>Updated Time</th>
+        <th colspan="3"></th>
+    </tr>
+    
+    <% @articles.each do |article| %>
+        <tr>
+            <td><%= article.title %></td>
+            <td><%= article.text %></td>
+            <td><%= article.updated_at %></td>
+            <td><%= link_to 'Show', article_path(article) %></td>
+            <td><%= link_to 'Edit', edit_article_path(article) %> </td>
+            <td><%= link_to 'Destroy', article_path(article),
+method: :delete,
+data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+    <% end %>
+
+</table>
+
+<p>
+
+ <%= response = HTTParty.get("https://brianmcauley.nationbuilder.com/api/v1/people?__nonce=adb0731da1b0cf4f6f230c898f8e746b3142a1157bcf9dd9745388f3bbe6358b&limit=200&__proto__=&access_token=adb0731da1b0cf4f6f230c898f8e746b3142a1157bcf9dd9745388f3bbe6358b",
+ :headers => { 'Content-Type' => 'application/json', 'Accept' => 'application/json'}) %>
+</p>
